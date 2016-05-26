@@ -56,10 +56,15 @@ app.post('/api/top100', function(req, res) {
     // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
     // treat Date.now() as unique-enough for our purposes.
     var newCourse = {
-      id: req.body.rank,
-      author: req.body.author,
-      text: req.body.text,
+      id: req.body.id,
+      name: req.body.name,
+      location: req.body.location,
+      architects: req.body.architects,
+      year: req.body.year,
+      played: req.body.played,
+      score: req.body.score
     };
+    console.log(newCourse);
     courses.push(newCourse);
     fs.writeFile(DATA_FILE, JSON.stringify(courses, null, 4), function(err) {
       if (err) {
