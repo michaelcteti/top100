@@ -162,7 +162,7 @@ var CoursesList = React.createClass({
   render: function() {
     var rows = []
     this.props.data.forEach(function(course) {
-      if (course.name.indexOf(this.props.filterText) === -1) {
+      if (course.name.toLowerCase().indexOf(this.props.filterText.toLowerCase()) === -1) {
         return;
       }
       if (!course.played && this.props.playedOnly) {
