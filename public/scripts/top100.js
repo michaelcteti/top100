@@ -1,6 +1,17 @@
 var TopCoursesTable = React.createClass({
   getInitialState: function() {
-    return {data: []};
+    return {
+      data: [],
+      filterText: '',
+      playedOnly: false
+    };
+  },
+
+  handleUserInput: function(filterText, playedOnly) {
+    this.setState({
+      filterText: filterText,
+      playedOnly: playedOnly
+    });
   },
 
   loadCoursesFromServer: function() {
@@ -45,7 +56,15 @@ var TopCoursesTable = React.createClass({
     return (
       <div className="topCoursesTable">
         <h2>Top 100 Courses in America</h2>
-        <CoursesList data={this.state.data} />
+        <SearchBar
+          filterText={this.state.filterText}
+          playedOnly={this.state.playedOnly}
+          onUserInput={this.handleUserInput} />
+        <br />
+        <CoursesList
+          data={this.state.data}
+          filterText={this.state.filterText}
+          playedOnly={this.state.playedOnly}/>
         <br />
         <h4>Add New Course</h4>
         <CourseForm onCourseSubmit={this.handleCourseAdd} />
@@ -143,8 +162,15 @@ var CoursesList = React.createClass({
   render: function() {
     var rows = []
     this.props.data.forEach(function(course) {
+      if (course.name.indexOf(this.props.filterText) === -1) {
+        return;
+      }
+      if (!course.played && this.props.playedOnly) {
+        return;
+      }
+
       rows.push(<CourseRow course={course} key={course.id} />);
-    });
+    }.bind(this));
 
     return (
       <div className="coursesList">
@@ -181,6 +207,38 @@ var CourseRow = React.createClass({
         <td>{this.props.course.played}</td>
         <td>{this.props.course.score}</td>
       </tr>
+    );
+  }
+});
+
+var SearchBar = React.createClass({
+  handleChange: function() {
+    this.props.onUserInput(
+      this.refs.filterTextInput.value,
+      this.refs.playedOnlyInput.checked
+    );
+  },
+
+  render: function() {
+    return (
+      <form>
+        <h4>Search for a Course</h4>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={this.props.filterText}
+          ref="filterTextInput"
+          onChange={this.handleChange} />
+        <p>
+          <input
+            type="checkbox"
+            checked={this.props.playedOnly}
+            ref="playedOnlyInput"
+            onChange={this.handleChange} />
+          {' '}
+          Only show courses you have played
+        </p>
+      </form>
     );
   }
 });
