@@ -1,39 +1,32 @@
-var courses = [
-  {
-      "id": 1,
-      "name": "Augusta National G.C.",
-      "location": "Augusta, GA",
-      "architects": "Mackenzie & Jones",
-      "year": "1933",
-      "played": null,
-      "score": null
-  },
-  {
-      "id": 2,
-      "name": "Pine Valley G.C.",
-      "location": "Pine Valley, NJ",
-      "architects": "Crump & Colt",
-      "year": "1918",
-      "played": null,
-      "score": null
-  },
-  {
-      "id": 19,
-      "name": "The Country Club",
-      "location": "Chestnut Hill, MA",
-      "architects": "Campbell & Campbell",
-      "year": "1895",
-      "played": "Yes",
-      "score": 95
-  }
-]
-
 var TopCoursesTable = React.createClass({
+  getInitialState: function() {
+    return {data: []};
+  },
+
+  loadCoursesFromServer: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+
+  componentDidMount: function() {
+    this.loadCoursesFromServer();
+    setInterval(this.loadCoursesFromServer, this.props.pollInterval);
+  },
+
   render: function() {
     return (
       <div className="topCoursesTable">
         <h2>Top 100 Courses in America</h2>
-        <CoursesList data={this.props.data} />
+        <CoursesList data={this.state.data} />
       </div>
     );
   }
@@ -86,6 +79,6 @@ var CourseRow = React.createClass({
 });
 
 ReactDOM.render(
-  <TopCoursesTable data={courses} />,
+  <TopCoursesTable url="/api/top100" pollInterval={2000}/>,
   document.getElementById('content')
 );
