@@ -18,6 +18,42 @@
         "score": null
     },
     {
+        "id": 3,
+        "name": "Cypress Point Club",
+        "location": "Pebble Beach, CA",
+        "architects": "Mackenzie",
+        "year": "1928",
+        "played": "",
+        "score": ""
+    },
+    {
+        "id": 4,
+        "name": "Shinnecock Hills G.C.",
+        "location": "Southampton, NY",
+        "architects": "Flynn",
+        "year": "1931",
+        "played": "",
+        "score": ""
+    },
+    {
+        "id": 5,
+        "name": "Merion G.C. (East)",
+        "location": "Ardmore, Pa",
+        "architects": "Wilson",
+        "year": "1912",
+        "played": "",
+        "score": ""
+    },
+    {
+        "id": 6,
+        "name": "Oakmont C.C.",
+        "location": "Oakmont, Pa",
+        "architects": "Fownes",
+        "year": "1903",
+        "played": "",
+        "score": ""
+    },
+    {
         "id": 19,
         "name": "The Country Club",
         "location": "Chestnut Hill, MA",
@@ -25,5 +61,14 @@
         "year": "1895",
         "played": "Yes",
         "score": 95
+    },
+    {
+        "id": 20,
+        "name": "The Ocean Course",
+        "location": "Kiawah Island, SC",
+        "architects": "Dye",
+        "year": "1991",
+        "played": "Yes",
+        "score": "99"
     }
 ]
