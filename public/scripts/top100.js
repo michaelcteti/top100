@@ -75,7 +75,7 @@ var TopCoursesTable = React.createClass({
 
 var CourseForm = React.createClass({
   getInitialState: function() {
-    return {id: '', name: '', location: '', architects: '', year: '', played: '', score: ''};
+    return {id: '', name: '', location: '', architects: '', year: '', score: ''};
   },
   handleIdChange: function(e) {
     this.setState({id: e.target.value});
@@ -92,9 +92,6 @@ var CourseForm = React.createClass({
   handleYearChange: function(e) {
     this.setState({year: e.target.value});
   },
-  handlePlayedChange: function(e) {
-    this.setState({played: e.target.value});
-  },
   handleScoreChange: function(e) {
     this.setState({score: e.target.value});
   },
@@ -105,22 +102,21 @@ var CourseForm = React.createClass({
     var location = this.state.location.trim();
     var architects = this.state.architects.trim();
     var year = this.state.year.trim();
-    var played = this.state.played.trim();
     var score = this.state.score.trim();
     if (!id || !name || !location) {
       return;
     }
-    this.props.onCourseSubmit({id: id, name: name, location: location, architects: architects, year: year, played: played, score: score});
-    this.setState({id: '', name: '', location: '', architects: '', year: '', played: '', score: ''});
+    this.props.onCourseSubmit({id: id, name: name, location: location, architects: architects, year: year, score: score});
+    this.setState({id: '', name: '', location: '', architects: '', year: '', score: ''});
   },
 
   render: function() {
     return (
       <form className="courseForm" onSubmit={this.handleSubmit}>
         <input
-          type="text"
+          type="number"
           placeholder="Rank"
-          value={parseInt(this.state.id)}
+          value={this.state.id}
           onChange={this.handleIdChange} />
         <input
           type="text"
@@ -143,12 +139,7 @@ var CourseForm = React.createClass({
           value={this.state.year}
           onChange={this.handleYearChange} />
         <input
-          type="text"
-          placeholder="Played"
-          value={this.state.played}
-          onChange={this.handlePlayedChange} />
-        <input
-          type="text"
+          type="number"
           placeholder="Score"
           value={this.state.score}
           onChange={this.handleScoreChange} />
@@ -165,11 +156,14 @@ var CoursesList = React.createClass({
       if (course.name.toLowerCase().indexOf(this.props.filterText.toLowerCase()) === -1) {
         return;
       }
-      if (!course.played && this.props.playedOnly) {
+      if (!course.score && this.props.playedOnly) {
         return;
       }
 
       rows.push(<CourseRow course={course} key={course.id} />);
+      rows.sort(function(a, b) {
+        return parseFloat(a.props.course.id) - parseFloat(b.props.course.id);
+      });
     }.bind(this));
 
     return (
@@ -181,8 +175,7 @@ var CoursesList = React.createClass({
               <th>Name</th>
               <th>Location</th>
               <th>Architect(s)</th>
-              <th>Year Opened</th>
-              <th>Played</th>
+              <th>Opening</th>
               <th>Score</th>
             </tr>
           </thead>
@@ -204,7 +197,6 @@ var CourseRow = React.createClass({
         <td>{this.props.course.location}</td>
         <td>{this.props.course.architects}</td>
         <td>{this.props.course.year}</td>
-        <td>{this.props.course.played}</td>
         <td>{this.props.course.score}</td>
       </tr>
     );

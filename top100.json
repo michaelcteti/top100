@@ -5,7 +5,6 @@
         "location": "Augusta, GA",
         "architects": "Mackenzie & Jones",
         "year": "1933",
-        "played": null,
         "score": null
     },
     {
@@ -14,7 +13,6 @@
         "location": "Pine Valley, NJ",
         "architects": "Crump & Colt",
         "year": "1918",
-        "played": null,
         "score": null
     },
     {
@@ -23,7 +21,6 @@
         "location": "Pebble Beach, CA",
         "architects": "Mackenzie",
         "year": "1928",
-        "played": "",
         "score": ""
     },
     {
@@ -32,7 +29,6 @@
         "location": "Southampton, NY",
         "architects": "Flynn",
         "year": "1931",
-        "played": "",
         "score": ""
     },
     {
@@ -41,7 +37,6 @@
         "location": "Ardmore, Pa",
         "architects": "Wilson",
         "year": "1912",
-        "played": "",
         "score": ""
     },
     {
@@ -50,17 +45,15 @@
         "location": "Oakmont, Pa",
         "architects": "Fownes",
         "year": "1903",
-        "played": "",
         "score": ""
     },
     {
         "id": 19,
-        "name": "The Country Club",
+        "name": "The Country Club (Clyde/Squirrel)",
         "location": "Chestnut Hill, MA",
         "architects": "Campbell & Campbell",
         "year": "1895",
-        "played": "Yes",
-        "score": 95
+        "score": 82
     },
     {
         "id": 20,
@@ -68,7 +61,102 @@
         "location": "Kiawah Island, SC",
         "architects": "Dye",
         "year": "1991",
-        "played": "Yes",
         "score": "99"
+    },
+    {
+        "id": 7,
+        "name": "Pebble Beach Golf Links",
+        "location": "Pebble Beach, CA",
+        "architects": "Neville & Grant",
+        "year": "1919",
+        "score": ""
+    },
+    {
+        "id": 8,
+        "name": "National Golf Links of America",
+        "location": "Southampton, NY",
+        "architects": "Macdonald",
+        "year": "1911",
+        "score": ""
+    },
+    {
+        "id": 9,
+        "name": "Winged Foot G.C. (West)",
+        "location": "Mamaroneck, NY",
+        "architects": "Tillinghast",
+        "year": "1923",
+        "score": ""
+    },
+    {
+        "id": 10,
+        "name": "Fishers Island Club",
+        "location": "Fishers Island, NY",
+        "architects": "Raynor & Banks",
+        "year": "1926",
+        "score": ""
+    },
+    {
+        "id": 11,
+        "name": "Sand Hills G.C.",
+        "location": "Mullen, NE",
+        "architects": "Coore & Crenshaw",
+        "year": "1994",
+        "score": ""
+    },
+    {
+        "id": 12,
+        "name": "Seminole G.C.",
+        "location": "Juno Beach, FL",
+        "architects": "Ross",
+        "year": "1929",
+        "score": ""
+    },
+    {
+        "id": 13,
+        "name": "Crystal Downs C.C.",
+        "location": "Frankfort, MI",
+        "architects": "Mackenzie & Maxwell",
+        "year": "1931",
+        "score": ""
+    },
+    {
+        "id": 14,
+        "name": "Chicago G.C.",
+        "location": "Wheaton, Il",
+        "architects": "Raynor",
+        "year": "1923",
+        "score": ""
+    },
+    {
+        "id": 15,
+        "name": "Muirfield Village G.C.",
+        "location": "Dublin, OH",
+        "architects": "Nicklaus & Muirhead",
+        "year": "1974",
+        "score": ""
+    },
+    {
+        "id": 16,
+        "name": "Oak Hill C.C. (East)",
+        "location": "Rochester, NY",
+        "architects": "Ross",
+        "year": "1925",
+        "score": ""
+    },
+    {
+        "id": "17",
+        "name": "Oakland Hills C.C. (South)",
+        "location": "Boomfield Hills, MI",
+        "architects": "Ross",
+        "year": "1918",
+        "score": ""
+    },
+    {
+        "id": "18",
+        "name": "Pacific Dunes",
+        "location": "Bandon, OR",
+        "architects": "Doak",
+        "year": "2001",
+        "score": ""
     }
 ]
