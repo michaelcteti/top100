@@ -222,9 +222,19 @@ var CoursesList = React.createClass({
 
 var CourseRow = React.createClass({
   render: function() {
+    var rank = this.props.course.us_rank
+    if (this.props.list == 'america') {
+      rank = this.props.course.us_rank;
+    }
+    if (this.props.list == 'world'){
+      rank = this.props.course.world_rank;
+    }
+    if (this.props.list == 'public'){
+      rank = this.props.course.public_rank;
+    }
     return (
       <tr>
-        <td>{this.props.course.us_rank}</td>
+        <td>{rank}</td>
         <td>{this.props.course.name}</td>
         <td>{this.props.course.location}</td>
         <td>{this.props.course.architects}</td>
@@ -238,13 +248,15 @@ var CourseRow = React.createClass({
 var CourseSelection = React.createClass({
   handleChange: function() {
     var list = 'america'
-    // if (this.refs.america.checked?) {
-    //   list = 'america';
-    // } else if (this.refs.world.checked) {
-    //   list = 'world';
-    // } else if (this.refs.public.checked) {
-    //   list = 'public';
-    // }
+    if (this.refs.america.checked) {
+      list = 'america';
+    }
+    if (this.refs.world.checked) {
+      list = 'world';
+    }
+    if (this.refs.public.checked) {
+      list = 'public';
+    }
     this.props.onUserInput(
       list
     );
