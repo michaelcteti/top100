@@ -99,12 +99,13 @@ app.post('/api/top100', function(req, res) {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("INSERT INTO courses (us_rank, name, location, architects, year, score) VALUES ($1, $2, $3, $4, $5, $6)", [parseInt(newCourse.rank), newCourse.name, newCourse.location, newCourse.architects, parseInt(newCourse.year), (parseInt(newCourse.score) || null)], function(err, result) {
+    client.query("INSERT INTO courses (us_rank, world_rank, name, location, architects, year, score, state) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)", [(parseInt(newCourse.us_rank) || null), (parseInt(newCourse.world_rank) || null), newCourse.name, newCourse.location, newCourse.architects, parseInt(newCourse.year), (parseInt(newCourse.score) || null), newCourse.state], function(err, result) {
       done();
 
       if(err) {
         return console.error('error', err);
       }
+      res.json(true)
     })
   })
 });

@@ -14,6 +14,12 @@ var TopCoursesTable = React.createClass({
     });
   },
 
+  handleListSelection: function(list) {
+    this.setState({
+      list: list
+    });
+  },
+
   loadCoursesFromServer: function() {
     $.ajax({
       url: this.props.url,
@@ -55,15 +61,21 @@ var TopCoursesTable = React.createClass({
   render: function() {
     return (
       <div className="topCoursesTable">
-        <h2>Top 100 Courses in America</h2>
+        <h2>Top Golf Courses</h2>
+        <h4>Add New Course</h4>
+        <CourseForm onCourseSubmit={this.handleCourseAdd} />
+        <br />
         <SearchBar
           filterText={this.state.filterText}
           playedOnly={this.state.playedOnly}
           onUserInput={this.handleUserInput} />
         <br />
-        <h4>Add New Course</h4>
-        <CourseForm onCourseSubmit={this.handleCourseAdd} />
-        <br />
+        <form onClick={this.handleListSelection}>
+          <input type="button" name="list" value="america"/>
+          <input type="button" name="list" value="world" />
+          <input type="button" name="list" value="public" />
+        </form>
+        <h4>Top 100 Courses</h4>
         <CoursesList
           data={this.state.data}
           filterText={this.state.filterText}
@@ -75,10 +87,13 @@ var TopCoursesTable = React.createClass({
 
 var CourseForm = React.createClass({
   getInitialState: function() {
-    return {rank: '', name: '', location: '', architects: '', year: '', score: ''};
+    return {us_rank: '', world_rank: '', name: '', location: '', architects: '', year: '', score: '', state: ''};
   },
-  handleRankChange: function(e) {
-    this.setState({rank: e.target.value});
+  handleUsRankChange: function(e) {
+    this.setState({us_rank: e.target.value});
+  },
+  handleWorldRankChange: function(e) {
+    this.setState({world_rank: e.target.value});
   },
   handleNameChange: function(e) {
     this.setState({name: e.target.value});
@@ -97,17 +112,20 @@ var CourseForm = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    var rank = this.state.rank.trim();
+    var us_rank = this.state.us_rank.trim();
+    var world_rank = this.state.world_rank.trim();
     var name = this.state.name.trim();
     var location = this.state.location.trim();
     var architects = this.state.architects.trim();
     var year = this.state.year.trim();
     var score = this.state.score.trim();
-    if (!rank || !name || !location) {
+    var state_initials = this.state.location.trim().match(/[^, ]*$/)[0]
+    debugger
+    if (!name || !location) {
       return;
     }
-    this.props.onCourseSubmit({rank: rank, name: name, location: location, architects: architects, year: year, score: score});
-    this.setState({rank: '', name: '', location: '', architects: '', year: '', score: ''});
+    this.props.onCourseSubmit({us_rank: us_rank, world_rank: world_rank, name: name, location: location, architects: architects, year: year, score: score, state: state_initials});
+    this.setState({us_rank: '', world_rank: '', name: '', location: '', architects: '', year: '', score: '', state: ''});
   },
 
   render: function() {
@@ -115,9 +133,14 @@ var CourseForm = React.createClass({
       <form className="courseForm" onSubmit={this.handleSubmit}>
         <input
           type="number"
-          placeholder="Rank"
-          value={this.state.rank}
-          onChange={this.handleRankChange} />
+          placeholder="US Rank"
+          value={this.state.us_rank}
+          onChange={this.handleUsRankChange} />
+        <input
+          type="number"
+          placeholder="World Rank"
+          value={this.state.world_rank}
+          onChange={this.handleWorldRankChange} />
         <input
           type="text"
           placeholder="Name"
@@ -160,7 +183,7 @@ var CoursesList = React.createClass({
         return;
       }
 
-      rows.push(<CourseRow course={course} key={course.us_rank} />);
+      rows.push(<CourseRow course={course} key={course.id} />);
       rows.sort(function(a, b) {
         return parseFloat(a.props.course.us_rank) - parseFloat(b.props.course.us_rank);
       });
@@ -236,6 +259,6 @@ var SearchBar = React.createClass({
 });
 
 ReactDOM.render(
-  <TopCoursesTable url="/api/top100" pollInterval={2000} />,
+  <TopCoursesTable url="/api/top100" pollInterval={5000} />,
   document.getElementById('content')
 );
