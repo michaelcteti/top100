@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "rank": 1,
         "name": "Augusta National G.C.",
         "location": "Augusta, GA",
         "architects": "Mackenzie & Jones",
@@ -8,7 +8,7 @@
         "score": null
     },
     {
-        "id": 2,
+        "rank": 2,
         "name": "Pine Valley G.C.",
         "location": "Pine Valley, NJ",
         "architects": "Crump & Colt",
@@ -16,7 +16,7 @@
         "score": null
     },
     {
-        "id": 3,
+        "rank": 3,
         "name": "Cypress Point Club",
         "location": "Pebble Beach, CA",
         "architects": "Mackenzie",
@@ -24,7 +24,7 @@
         "score": ""
     },
     {
-        "id": 4,
+        "rank": 4,
         "name": "Shinnecock Hills G.C.",
         "location": "Southampton, NY",
         "architects": "Flynn",
@@ -32,7 +32,7 @@
         "score": ""
     },
     {
-        "id": 5,
+        "rank": 5,
         "name": "Merion G.C. (East)",
         "location": "Ardmore, Pa",
         "architects": "Wilson",
@@ -40,7 +40,7 @@
         "score": ""
     },
     {
-        "id": 6,
+        "rank": 6,
         "name": "Oakmont C.C.",
         "location": "Oakmont, Pa",
         "architects": "Fownes",
@@ -48,7 +48,7 @@
         "score": ""
     },
     {
-        "id": 19,
+        "rank": 19,
         "name": "The Country Club (Clyde/Squirrel)",
         "location": "Chestnut Hill, MA",
         "architects": "Campbell & Campbell",
@@ -56,7 +56,7 @@
         "score": 82
     },
     {
-        "id": 20,
+        "rank": 20,
         "name": "The Ocean Course",
         "location": "Kiawah Island, SC",
         "architects": "Dye",
@@ -64,7 +64,7 @@
         "score": "99"
     },
     {
-        "id": 7,
+        "rank": 7,
         "name": "Pebble Beach Golf Links",
         "location": "Pebble Beach, CA",
         "architects": "Neville & Grant",
@@ -72,7 +72,7 @@
         "score": ""
     },
     {
-        "id": 8,
+        "rank": 8,
         "name": "National Golf Links of America",
         "location": "Southampton, NY",
         "architects": "Macdonald",
@@ -80,7 +80,7 @@
         "score": ""
     },
     {
-        "id": 9,
+        "rank": 9,
         "name": "Winged Foot G.C. (West)",
         "location": "Mamaroneck, NY",
         "architects": "Tillinghast",
@@ -88,7 +88,7 @@
         "score": ""
     },
     {
-        "id": 10,
+        "rank": 10,
         "name": "Fishers Island Club",
         "location": "Fishers Island, NY",
         "architects": "Raynor & Banks",
@@ -96,7 +96,7 @@
         "score": ""
     },
     {
-        "id": 11,
+        "rank": 11,
         "name": "Sand Hills G.C.",
         "location": "Mullen, NE",
         "architects": "Coore & Crenshaw",
@@ -104,7 +104,7 @@
         "score": ""
     },
     {
-        "id": 12,
+        "rank": 12,
         "name": "Seminole G.C.",
         "location": "Juno Beach, FL",
         "architects": "Ross",
@@ -112,7 +112,7 @@
         "score": ""
     },
     {
-        "id": 13,
+        "rank": 13,
         "name": "Crystal Downs C.C.",
         "location": "Frankfort, MI",
         "architects": "Mackenzie & Maxwell",
@@ -120,7 +120,7 @@
         "score": ""
     },
     {
-        "id": 14,
+        "rank": 14,
         "name": "Chicago G.C.",
         "location": "Wheaton, Il",
         "architects": "Raynor",
@@ -128,7 +128,7 @@
         "score": ""
     },
     {
-        "id": 15,
+        "rank": 15,
         "name": "Muirfield Village G.C.",
         "location": "Dublin, OH",
         "architects": "Nicklaus & Muirhead",
@@ -136,7 +136,7 @@
         "score": ""
     },
     {
-        "id": 16,
+        "rank": 16,
         "name": "Oak Hill C.C. (East)",
         "location": "Rochester, NY",
         "architects": "Ross",
@@ -144,7 +144,7 @@
         "score": ""
     },
     {
-        "id": "17",
+        "rank": 17,
         "name": "Oakland Hills C.C. (South)",
         "location": "Boomfield Hills, MI",
         "architects": "Ross",
@@ -152,7 +152,7 @@
         "score": ""
     },
     {
-        "id": "18",
+        "rank": 18,
         "name": "Pacific Dunes",
         "location": "Bandon, OR",
         "architects": "Doak",
@@ -160,7 +160,7 @@
         "score": ""
     },
     {
-        "id": "21",
+        "rank": 21,
         "name": "Wade Hampton G.C.",
         "location": "Cashiers, NC",
         "architects": "Fazio",
@@ -168,7 +168,7 @@
         "score": ""
     },
     {
-        "id": "22",
+        "rank": 22,
         "name": "Whistling Straits",
         "location": "Haven, WI",
         "architects": "Dye",
@@ -176,7 +176,7 @@
         "score": ""
     },
     {
-        "id": "23",
+        "rank": 23,
         "name": "Friar's Head G.C.",
         "location": "Baiting Hallow, NY",
         "architects": "Coore & Crenshaw",
@@ -184,7 +184,7 @@
         "score": ""
     },
     {
-        "id": "24",
+        "rank": 24,
         "name": "Riviera C.C.",
         "location": "Pacific Palisades, CA",
         "architects": "Thomas Jr & Bell",
@@ -192,7 +192,7 @@
         "score": ""
     },
     {
-        "id": "25",
+        "rank": 25,
         "name": "Praire Dunes C.C.",
         "location": "Hutchinson, KS",
         "architects": "Maxwell",

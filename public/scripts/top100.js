@@ -75,10 +75,10 @@ var TopCoursesTable = React.createClass({
 
 var CourseForm = React.createClass({
   getInitialState: function() {
-    return {id: '', name: '', location: '', architects: '', year: '', score: ''};
+    return {rank: '', name: '', location: '', architects: '', year: '', score: ''};
   },
-  handleIdChange: function(e) {
-    this.setState({id: e.target.value});
+  handleRankChange: function(e) {
+    this.setState({rank: e.target.value});
   },
   handleNameChange: function(e) {
     this.setState({name: e.target.value});
@@ -97,17 +97,17 @@ var CourseForm = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    var id = this.state.id.trim();
+    var rank = this.state.rank.trim();
     var name = this.state.name.trim();
     var location = this.state.location.trim();
     var architects = this.state.architects.trim();
     var year = this.state.year.trim();
     var score = this.state.score.trim();
-    if (!id || !name || !location) {
+    if (!rank || !name || !location) {
       return;
     }
-    this.props.onCourseSubmit({id: id, name: name, location: location, architects: architects, year: year, score: score});
-    this.setState({id: '', name: '', location: '', architects: '', year: '', score: ''});
+    this.props.onCourseSubmit({rank: rank, name: name, location: location, architects: architects, year: year, score: score});
+    this.setState({rank: '', name: '', location: '', architects: '', year: '', score: ''});
   },
 
   render: function() {
@@ -116,8 +116,8 @@ var CourseForm = React.createClass({
         <input
           type="number"
           placeholder="Rank"
-          value={this.state.id}
-          onChange={this.handleIdChange} />
+          value={this.state.rank}
+          onChange={this.handleRankChange} />
         <input
           type="text"
           placeholder="Name"
@@ -160,9 +160,9 @@ var CoursesList = React.createClass({
         return;
       }
 
-      rows.push(<CourseRow course={course} key={course.id} />);
+      rows.push(<CourseRow course={course} key={course.us_rank} />);
       rows.sort(function(a, b) {
-        return parseFloat(a.props.course.id) - parseFloat(b.props.course.id);
+        return parseFloat(a.props.course.us_rank) - parseFloat(b.props.course.us_rank);
       });
     }.bind(this));
 
@@ -192,7 +192,7 @@ var CourseRow = React.createClass({
   render: function() {
     return (
       <tr>
-        <td>{this.props.course.id}</td>
+        <td>{this.props.course.us_rank}</td>
         <td>{this.props.course.name}</td>
         <td>{this.props.course.location}</td>
         <td>{this.props.course.architects}</td>
