@@ -12,9 +12,21 @@
 
 var fs = require('fs');
 var path = require('path');
-var express = require('express');
 var bodyParser = require('body-parser');
+
+var express = require('express');
 var app = express();
+
+var pg = require('pg');
+var client = new pg.Client();
+var config = {
+  user: 'my_user', //env var: PGUSER
+  database: 'my_db', //env var: PGDATABASE
+  password: 'secret', //env var: PGPASSWORD
+  port: 5432, //env var: PGPORT
+  max: 10, // max number of clients in the pool
+  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+};
 
 var DATA_FILE = path.join(__dirname, 'top100.json');
 
@@ -52,9 +64,6 @@ app.post('/api/top100', function(req, res) {
       process.exit(1);
     }
     var courses = JSON.parse(data);
-    // NOTE: In a real implementation, we would likely rely on a database or
-    // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
-    // treat Date.now() as unique-enough for our purposes.
     var newCourse = {
       id: parseFloat(req.body.id),
       name: req.body.name,

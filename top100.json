@@ -158,5 +158,45 @@
         "architects": "Doak",
         "year": "2001",
         "score": ""
+    },
+    {
+        "id": "21",
+        "name": "Wade Hampton G.C.",
+        "location": "Cashiers, NC",
+        "architects": "Fazio",
+        "year": "1987",
+        "score": ""
+    },
+    {
+        "id": "22",
+        "name": "Whistling Straits",
+        "location": "Haven, WI",
+        "architects": "Dye",
+        "year": "1998",
+        "score": ""
+    },
+    {
+        "id": "23",
+        "name": "Friar's Head G.C.",
+        "location": "Baiting Hallow, NY",
+        "architects": "Coore & Crenshaw",
+        "year": "2002",
+        "score": ""
+    },
+    {
+        "id": "24",
+        "name": "Riviera C.C.",
+        "location": "Pacific Palisades, CA",
+        "architects": "Thomas Jr & Bell",
+        "year": "1926",
+        "score": ""
+    },
+    {
+        "id": "25",
+        "name": "Praire Dunes C.C.",
+        "location": "Hutchinson, KS",
+        "architects": "Maxwell",
+        "year": "1937",
+        "score": ""
     }
 ]

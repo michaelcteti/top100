@@ -61,13 +61,13 @@ var TopCoursesTable = React.createClass({
           playedOnly={this.state.playedOnly}
           onUserInput={this.handleUserInput} />
         <br />
+        <h4>Add New Course</h4>
+        <CourseForm onCourseSubmit={this.handleCourseAdd} />
+        <br />
         <CoursesList
           data={this.state.data}
           filterText={this.state.filterText}
           playedOnly={this.state.playedOnly}/>
-        <br />
-        <h4>Add New Course</h4>
-        <CourseForm onCourseSubmit={this.handleCourseAdd} />
       </div>
     );
   }
