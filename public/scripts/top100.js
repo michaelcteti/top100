@@ -70,15 +70,12 @@ var TopCoursesTable = React.createClass({
           playedOnly={this.state.playedOnly}
           onUserInput={this.handleUserInput} />
         <br />
-        <form onClick={this.handleListSelection}>
-          <input type="button" name="list" value="america"/>
-          <input type="button" name="list" value="world" />
-          <input type="button" name="list" value="public" />
-        </form>
+        <CourseSelection list={this.state.list} onUserInput={this.handleListSelection} />
         <h4>Top 100 Courses</h4>
         <CoursesList
           data={this.state.data}
           filterText={this.state.filterText}
+          list={this.state.list}
           playedOnly={this.state.playedOnly}/>
       </div>
     );
@@ -120,7 +117,6 @@ var CourseForm = React.createClass({
     var year = this.state.year.trim();
     var score = this.state.score.trim();
     var state_initials = this.state.location.trim().match(/[^, ]*$/)[0]
-    debugger
     if (!name || !location) {
       return;
     }
@@ -174,16 +170,29 @@ var CourseForm = React.createClass({
 
 var CoursesList = React.createClass({
   render: function() {
+    console.log(this.props)
     var rows = []
     this.props.data.forEach(function(course) {
+      if (!this.props.list) {
+        return;
+      }
       if (course.name.toLowerCase().indexOf(this.props.filterText.toLowerCase()) === -1) {
         return;
       }
       if (!course.score && this.props.playedOnly) {
         return;
       }
+      if (this.props.list == 'america' && !course.us_rank) {
+        return;
+      }
+      if (this.props.list == 'world' && !course.world_rank) {
+        return;
+      }
+      if (this.props.list == 'public' && !course.public_rank) {
+        return;
+      }
 
-      rows.push(<CourseRow course={course} key={course.id} />);
+      rows.push(<CourseRow course={course} key={course.id} list={this.props.list} />);
       rows.sort(function(a, b) {
         return parseFloat(a.props.course.us_rank) - parseFloat(b.props.course.us_rank);
       });
@@ -223,6 +232,32 @@ var CourseRow = React.createClass({
         <td>{this.props.course.score}</td>
       </tr>
     );
+  }
+});
+
+var CourseSelection = React.createClass({
+  handleChange: function() {
+    var list = 'america'
+    // if (this.refs.america.checked?) {
+    //   list = 'america';
+    // } else if (this.refs.world.checked) {
+    //   list = 'world';
+    // } else if (this.refs.public.checked) {
+    //   list = 'public';
+    // }
+    this.props.onUserInput(
+      list
+    );
+  },
+
+  render: function() {
+    return (
+      <form>
+        <input type="radio" name="list" ref="america" value="america" onChange={this.handleChange} /> America
+        <input type="radio" name="list" ref="world" value="world" onChange={this.handleChange} /> World
+        <input type="radio" name="list" ref="public" value="public" onChange={this.handleChange} /> Public
+      </form>
+    )
   }
 });
 
