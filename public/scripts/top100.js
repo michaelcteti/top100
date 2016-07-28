@@ -76,7 +76,7 @@ var TopCoursesTable = React.createClass({
           data={this.state.data}
           filterText={this.state.filterText}
           list={this.state.list}
-          playedOnly={this.state.playedOnly}/>
+          playedOnly={this.state.playedOnly} />
       </div>
     );
   }
@@ -186,6 +186,52 @@ var CourseForm = React.createClass({
   }
 });
 
+var ScoreForm = React.createClass({
+  getInitialState: function() {
+    return {score: ''};
+  },
+  handleScoreChange: function(e) {
+    this.setState({score: e.target.value});
+  },
+  updateScore: function(course) {
+    $.ajax({
+      url: '/api/top100',
+      dataType: 'json',
+      type: 'PATCH',
+      data: course,
+      success: function() {
+        this.setState({score: ''});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        this.setState({score: ''});
+        console.error('/api/top100', status, err.toString());
+      }.bind(this)
+    });
+  },
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var score = this.state.score.trim();
+    var courseId = this.props.course.id;
+    if (!score || !courseId) {
+      return;
+    }
+    this.updateScore({id: courseId, score: score});
+  },
+
+  render: function() {
+    return (
+      <form className="scoreForm" onSubmit={this.handleSubmit}>
+        <input
+          type="number"
+          placeholder="Score"
+          value={this.state.score}
+          onChange={this.handleScoreChange} />
+        <input type="submit" value="Post" />
+      </form>
+    )
+  }
+});
+
 var CoursesList = React.createClass({
   render: function() {
     var rows = []
@@ -226,6 +272,7 @@ var CoursesList = React.createClass({
               <th>Architect(s)</th>
               <th>Opening</th>
               <th>Best Score</th>
+              <th>Update</th>
             </tr>
           </thead>
           <tbody>
@@ -257,6 +304,7 @@ var CourseRow = React.createClass({
         <td>{this.props.course.architects}</td>
         <td>{this.props.course.year}</td>
         <td>{this.props.course.score}</td>
+        <td><ScoreForm course={this.props.course} /></td>
       </tr>
     );
   }

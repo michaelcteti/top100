@@ -110,6 +110,23 @@ app.post('/api/top100', function(req, res) {
   })
 });
 
+app.patch('/api/top100', function(req, res) {
+  var newScore = req.body
+  pool.connect(function(err, client, done) {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query("UPDATE courses SET score = ($1) WHERE id = ($2)", [newScore.score, newScore.id], function(err, result) {
+      done();
+
+      if(err) {
+        return console.error('error', err);
+      }
+      res.json(true)
+    })
+  })
+});
+
 
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');
