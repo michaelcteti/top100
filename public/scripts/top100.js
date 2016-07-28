@@ -71,7 +71,6 @@ var TopCoursesTable = React.createClass({
           onUserInput={this.handleUserInput} />
         <br />
         <CourseSelection list={this.state.list} onUserInput={this.handleListSelection} />
-        <h4>Top 100 Courses</h4>
         <CoursesList
           data={this.state.data}
           filterText={this.state.filterText}
@@ -255,9 +254,19 @@ var CoursesList = React.createClass({
         return;
       }
 
+      if (this.props.list == 'america') {
+        course.rank = course.us_rank;
+      }
+      if (this.props.list == 'world'){
+        course.rank = course.world_rank;
+      }
+      if (this.props.list == 'public'){
+        course.rank = course.public_rank;
+      }
+
       rows.push(<CourseRow course={course} key={course.id} list={this.props.list} />);
       rows.sort(function(a, b) {
-        return parseFloat(a.props.course.us_rank) - parseFloat(b.props.course.us_rank);
+        return parseFloat(a.props.course.rank) - parseFloat(b.props.course.rank);
       });
     }.bind(this));
 
