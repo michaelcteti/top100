@@ -14,9 +14,10 @@ var TopCoursesTable = React.createClass({
     });
   },
 
-  handleListSelection: function(list) {
+  handleListSelection: function(list, state) {
     this.setState({
-      list: list
+      list: list,
+      state: state
     });
   },
 
@@ -75,7 +76,8 @@ var TopCoursesTable = React.createClass({
           data={this.state.data}
           filterText={this.state.filterText}
           list={this.state.list}
-          playedOnly={this.state.playedOnly} />
+          playedOnly={this.state.playedOnly}
+          state={this.state.state} />
       </div>
     );
   }
@@ -253,6 +255,12 @@ var CoursesList = React.createClass({
       if (this.props.list == 'public' && !course.public_rank) {
         return;
       }
+      console.log(this.props.list);
+      console.log(this.props.state);
+      console.log(course.state);
+      if (this.props.list == 'state' && (!course.state_rank || this.props.state != course.state)){
+        return;
+      }
 
       if (this.props.list == 'america') {
         course.rank = course.us_rank;
@@ -262,6 +270,9 @@ var CoursesList = React.createClass({
       }
       if (this.props.list == 'public'){
         course.rank = course.public_rank;
+      }
+      if (this.props.list == 'state'){
+        course.rank = course.state_rank;
       }
 
       rows.push(<CourseRow course={course} key={course.id} list={this.props.list} />);
@@ -305,6 +316,9 @@ var CourseRow = React.createClass({
     if (this.props.list == 'public'){
       rank = this.props.course.public_rank;
     }
+    if (this.props.list == 'state'){
+      rank = this.props.course.state_rank;
+    }
     return (
       <tr>
         <td>{rank}</td>
@@ -322,6 +336,7 @@ var CourseRow = React.createClass({
 var CourseSelection = React.createClass({
   handleChange: function() {
     var list = 'america'
+    var state = this.refs.stateSelect.value
     if (this.refs.america.checked) {
       list = 'america';
     }
@@ -331,8 +346,12 @@ var CourseSelection = React.createClass({
     if (this.refs.public.checked) {
       list = 'public';
     }
+    if (this.refs.state.checked) {
+      list = 'state';
+    }
     this.props.onUserInput(
-      list
+      list,
+      state
     );
   },
 
@@ -342,6 +361,11 @@ var CourseSelection = React.createClass({
         <input type="radio" name="list" ref="america" value="america" onChange={this.handleChange} /> America
         <input type="radio" name="list" ref="world" value="world" onChange={this.handleChange} /> World
         <input type="radio" name="list" ref="public" value="public" onChange={this.handleChange} /> Public
+        <input type="radio" name="list" ref="state" value="state" onChange={this.handleChange} /> State
+        <select name="stateSelect" ref="stateSelect" onChange={this.handleChange}>
+          <option value="MA">MA</option>
+          <option value="NY">NY</option>
+        </select>
       </form>
     )
   }
