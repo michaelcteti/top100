@@ -84,7 +84,7 @@ var TopCoursesTable = React.createClass({
 
 var CourseForm = React.createClass({
   getInitialState: function() {
-    return {us_rank: '', world_rank: '', public_rank: '', name: '', location: '', architects: '', year: '', score: '', state: ''};
+    return {us_rank: '', world_rank: '', public_rank: '', state_rank: '', name: '', location: '', architects: '', year: '', score: '', state: ''};
   },
   handleUsRankChange: function(e) {
     this.setState({us_rank: e.target.value});
@@ -94,6 +94,9 @@ var CourseForm = React.createClass({
   },
   handlePublicRankChange: function(e) {
     this.setState({public_rank: e.target.value});
+  },
+  handleStateRankChange: function(e) {
+    this.setState({state_rank: e.target.value});
   },
   handleNameChange: function(e) {
     this.setState({name: e.target.value});
@@ -115,6 +118,7 @@ var CourseForm = React.createClass({
     var us_rank = this.state.us_rank.trim();
     var world_rank = this.state.world_rank.trim();
     var public_rank = this.state.public_rank.trim();
+    var state_rank = this.state.state_rank.trim();
     var name = this.state.name.trim();
     var location = this.state.location.trim();
     var architects = this.state.architects.trim();
@@ -124,8 +128,8 @@ var CourseForm = React.createClass({
     if (!name || !location) {
       return;
     }
-    this.props.onCourseSubmit({us_rank: us_rank, world_rank: world_rank, public_rank, public_rank, name: name, location: location, architects: architects, year: year, score: score, state: state_initials});
-    this.setState({us_rank: '', world_rank: '', public_rank: '', name: '', location: '', architects: '', year: '', score: '', state: ''});
+    this.props.onCourseSubmit({us_rank: us_rank, world_rank: world_rank, public_rank, public_rank, state_rank: state_rank, name: name, location: location, architects: architects, year: year, score: score, state: state_initials});
+    this.setState({us_rank: '', world_rank: '', public_rank: '', state_rank: '', name: '', location: '', architects: '', year: '', score: '', state: ''});
   },
 
   render: function() {
@@ -146,6 +150,11 @@ var CourseForm = React.createClass({
           placeholder="Public Rank"
           value={this.state.public_rank}
           onChange={this.handlePublicRankChange} />
+        <input
+          type="number"
+          placeholder="State Rank"
+          value={this.state.state_rank}
+          onChange={this.handleStateRankChange} />
         <input
           type="text"
           placeholder="Name"
