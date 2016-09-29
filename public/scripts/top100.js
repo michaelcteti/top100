@@ -62,7 +62,7 @@ var TopCoursesTable = React.createClass({
   render: function() {
     return (
       <div className="topCoursesTable">
-        <h2>Top Golf Courses</h2>
+        <h2>Top Golf Courses - Have Fun F***ing with the Data</h2>
         <h4>Add New Course</h4>
         <CourseForm onCourseSubmit={this.handleCourseAdd} />
         <br />
