@@ -236,7 +236,20 @@ var ScoreForm = React.createClass({
 var CoursesList = React.createClass({
   render: function() {
     var rows = []
+    var us_count = 0
+    var world_count = 0
+    var public_count = 0
     this.props.data.forEach(function(course) {
+      if (course.us_rank && course.score) {
+        us_count += 1;
+      }
+      if (course.world_rank && course.score) {
+        world_count += 1;
+      }
+      if (course.public_rank && course.score) {
+        public_count += 1;
+      }
+
       if (!this.props.list) {
         return;
       }
@@ -280,6 +293,7 @@ var CoursesList = React.createClass({
 
     return (
       <div className="coursesList">
+        <p>America: {us_count}/200 &nbsp;&nbsp; World: {world_count}/100 &nbsp;&nbsp; Public: {public_count}/100</p>
         <table>
           <thead>
             <tr>
