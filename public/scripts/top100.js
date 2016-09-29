@@ -271,6 +271,9 @@ var CoursesList = React.createClass({
       if (this.props.list == 'state' && (!course.state_rank || this.props.state != course.state)){
         return;
       }
+      if (this.props.list == 'us_open' && !course.us_open) {
+        return;
+      }
 
       if (this.props.list == 'america') {
         course.rank = course.us_rank;
@@ -283,6 +286,9 @@ var CoursesList = React.createClass({
       }
       if (this.props.list == 'state'){
         course.rank = course.state_rank;
+      }
+      if (this.props.list == 'us_open') {
+        course.rank = course.us_rank;
       }
 
       rows.push(<CourseRow course={course} key={course.id} list={this.props.list} />);
@@ -360,6 +366,9 @@ var CourseSelection = React.createClass({
     if (this.refs.state.checked) {
       list = 'state';
     }
+    if (this.refs.us_open.checked) {
+      list = 'us_open';
+    }
     this.props.onUserInput(
       list,
       state
@@ -369,10 +378,10 @@ var CourseSelection = React.createClass({
   render: function() {
     return (
       <form>
-        <input type="radio" name="list" ref="america" value="america" onChange={this.handleChange} /> America
-        <input type="radio" name="list" ref="world" value="world" onChange={this.handleChange} /> World
-        <input type="radio" name="list" ref="public" value="public" onChange={this.handleChange} /> Public
-        <input type="radio" name="list" ref="state" value="state" onChange={this.handleChange} /> State
+        <input type="radio" name="list" ref="america" value="america" onChange={this.handleChange} /> America &nbsp;&nbsp;
+        <input type="radio" name="list" ref="world" value="world" onChange={this.handleChange} /> World &nbsp;&nbsp;
+        <input type="radio" name="list" ref="public" value="public" onChange={this.handleChange} /> Public &nbsp;&nbsp;
+        <input type="radio" name="list" ref="state" value="state" onChange={this.handleChange} /> State &nbsp;&nbsp;
         <select name="stateSelect" ref="stateSelect" onChange={this.handleChange}>
           <option value="AL">Alabama</option>
           <option value="AK">Alaska</option>
@@ -426,6 +435,8 @@ var CourseSelection = React.createClass({
           <option value="WI">Wisconsin</option>
           <option value="WY">Wyoming</option>
         </select>
+        &nbsp;&nbsp;
+        <input type="radio" name="list" ref="us_open" value="us_open" onChange={this.handleChange} /> Hosted US Open
       </form>
     )
   }
