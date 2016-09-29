@@ -10,6 +10,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+require('dotenv').config();
 var fs = require('fs');
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -19,9 +20,10 @@ var app = express();
 
 var pg = require('pg');
 var config = {
-  user: 'top100', //env var: PGUSER
-  database: 'top100_dev', //env var: PGDATABASE
-  password: 'password', //env var: PGPASSWORD
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER, //env var: PGUSER
+  database: process.env.DB_DATABASE, //env var: PGDATABASE
+  password: process.env.DB_PASS, //env var: PGPASSWORD
   port: 5432, //env var: PGPORT
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
